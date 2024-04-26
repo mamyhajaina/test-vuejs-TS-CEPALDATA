@@ -45,9 +45,7 @@ const handleSubmit = () => {
             <div class="float-left mt-5">
               <div class="credits text-white">
                 <p class="text-white">
-                  Ut in ea error laudantium quas omnis officia. Sit sed
-                  praesentium voluptas. Corrupti inventore consequatur nisi
-                  necessitatibus modi consequuntur soluta id. Enim autem est
+                  Pour information c'est un login statique et le Compte est: Achi@gmail.com/test. Enim autem est
                   esse natus assumenda. Non sunt dignissimos officiis expedita.
                   Consequatur sint repellendus voluptas. Quidem sit est nulla
                   ullam. Suscipit debitis ullam iusto dolorem animi dolorem

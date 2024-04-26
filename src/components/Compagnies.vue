@@ -24,7 +24,7 @@
           <div class="row">
             <div class="col-6">Vue: {{ company.vue }}</div>
             <div class="col-6">
-              <button type="button" class="btn btn-primary">Voir</button>
+              <!-- <button type="button" class="btn btn-primary">Voir</button> -->
             </div>
           </div>
         </div>
