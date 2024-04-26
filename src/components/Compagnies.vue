@@ -64,11 +64,12 @@
 <script setup lang="ts">
 import type { ICompany } from "@/interfaces/company.interface";
 import axios from "axios";
-import { defineProps, ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 const companies = ref<ICompany[]>([]); // Initialize as an empty array
 const searchTerm = ref(""); // Search term for filtering
 const currentPage = ref(1); // Current page number (initially set to 1)
+const prevSearchTerm = ref("");
 const itemsPerPage = 3; // Items to display per page
 
 onMounted(async () => {
@@ -86,10 +87,14 @@ const filteredAndPaginatedCompanies = computed<{
   totalPages: number;
   data: ICompany[];
 }>(() => {
+  if (prevSearchTerm.value != searchTerm.value) {
+    currentPage.value = 1;
+  }
+
   const filtered = companies.value.filter((company) =>
     company["Company Name"]
-      .toLowerCase()
-      .includes(searchTerm.value.toLowerCase())
+      ?.toLowerCase()
+      ?.includes(searchTerm.value.toLowerCase())
   );
 
   if (filtered.length === 0) {
@@ -104,25 +109,33 @@ const filteredAndPaginatedCompanies = computed<{
 
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
   const data = filtered.slice(startIndex, endIndex);
+  resetPrevSearchTerm();
   return {
     totalPages,
     data,
   };
 });
 
+function resetPrevSearchTerm() {
+  prevSearchTerm.value = String(searchTerm.value);
+}
+
 function prevPage() {
   if (currentPage.value > 1) {
+    resetPrevSearchTerm();
     currentPage.value--;
   }
 }
 
 function nextPage() {
   if (currentPage.value < filteredAndPaginatedCompanies.value.totalPages) {
+    resetPrevSearchTerm();
     currentPage.value++;
   }
 }
 
 function setPage(pageNumber: number) {
+  resetPrevSearchTerm();
   currentPage.value = pageNumber;
 }
 </script>
