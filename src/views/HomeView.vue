@@ -1,7 +1,39 @@
 <template>
   <section class="section">
     <div class="row align-items-top">
-      <div class="col-lg-9">
+      <div class="col-lg-3">
+        <div class="card mb-3 h-100 back-gray p-5">
+          <div class="d-flex py-4 mb-5">
+            <a
+              href="index.html"
+              class="logo d-flex align-items-center w-auto"
+            >
+              <img src="/src/assets/img/logo.png" alt="" />
+            </a>
+          </div>
+          <h6>Lorem ipsum dolor sit amet,</h6>
+          <div class="col-12 mt-4">
+            <div class="line-with-text">
+              <div class="line"></div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="button">+ Add Items</button>
+          </div>
+
+          <div class="float-left mt-5">
+            <div class="credits text-white">
+              <p class="text-white">
+                Compte: Achi@gmail.com et le mtps: test.
+              </p>
+              John Doe
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
         <div class="pagetitle">
           <nav>
             <ol class="breadcrumb">
@@ -81,4 +113,17 @@ import Compagnies from "../components/Compagnies.vue";
 import Header from "../components/Header.vue";
 </script>
 
-<style></style>
+<style>
+.line-with-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.line {
+  flex-grow: 1;
+  border-bottom: 1px solid black;
+}
+.back-gray {
+  background-color: #b5b9c4;
+}
+</style>
