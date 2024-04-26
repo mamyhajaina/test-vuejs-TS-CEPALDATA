@@ -121,7 +121,7 @@ const insertComp = async () => {
   try {
     await axios.post(
       `https://api-generator.retool.com/Oal4aL/listing-company`,
-      companiesDetail
+      companiesDetail.value
     );
     router.push(`/home`);
   } catch {}
