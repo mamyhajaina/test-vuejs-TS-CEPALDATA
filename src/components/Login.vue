@@ -45,8 +45,7 @@ const handleSubmit = () => {
             <div class="float-left mt-5">
               <div class="credits text-white">
                 <p class="text-white">
-                  Ut in ea error laudantium quas omnis officia. Sit sed
-                  praesentium voluptas. Corrupti inventore consequatur nisi
+                  Compte: Achi@gmail.com et le mtps: test. Corrupti inventore consequatur nisi
                   necessitatibus modi consequuntur soluta id. Enim autem est
                   esse natus assumenda. Non sunt dignissimos officiis expedita.
                   Consequatur sint repellendus voluptas. Quidem sit est nulla
