@@ -16,7 +16,13 @@
           </div>
 
           <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="button">+ Add Items</button>
+            <button
+              class="btn btn-primary"
+              @click="navigateInsert()"
+              type="button"
+            >
+              + Add Items
+            </button>
           </div>
 
           <div class="float-left mt-5">
@@ -130,6 +136,11 @@
 <script setup lang="ts">
 import Compagnies from "../components/Compagnies.vue";
 import Header from "../components/Header.vue";
+import router from "@/router";
+
+function navigateInsert() {
+  router.push("/insert");
+}
 </script>
 
 <style>

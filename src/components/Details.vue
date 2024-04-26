@@ -16,7 +16,13 @@
           </div>
 
           <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="button">+ Add Items</button>
+            <button
+              class="btn btn-primary"
+              @click="navigateInsert()"
+              type="button"
+            >
+              + Add Items
+            </button>
           </div>
 
           <div class="float-left mt-5">
@@ -279,4 +285,8 @@ const navigeHome = () => {
 const updateVue = (value: number) => {
   companiesDetail.value["id"] = value;
 };
+
+function navigateInsert() {
+  router.push("/insert");
+}
 </script>
