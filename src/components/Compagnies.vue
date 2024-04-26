@@ -120,7 +120,7 @@ function nextPage() {
   }
 }
 
-function setPage(pageNumber) {
+function setPage(pageNumber: number) {
   if (!isSearching.value) {
     currentPage.value = pageNumber;
   }
