@@ -69,7 +69,7 @@ interface Company {
 onMounted(async () => {
   try {
     const response = await axios.get(
-      "https://retoolapi.dev/Oal4aL/listing-company" // Replace with endpoint for all companies
+      "https://retoolapi.dev/Oal4aL/listing-company"
     );
     companies.value = response.data;
   } catch (error) {
@@ -91,7 +91,6 @@ const totalPages = computed(() =>
 
 const paginatedCompanies = computed(() => {
   if (filteredCompanies.value.length === 0) {
-    // No companies to paginate, return an empty array
     return [];
   }
 
@@ -106,26 +105,22 @@ function searchCompanies() {
   if (searchTerm.value.length < 3) {
     console.warn("Search term must be at least 3 characters long.");
   }
-  // Reset pagination to first page after search
   currentPage.value = 1;
 }
 
 function prevPage() {
-  // Disable previous button when searching or on the first page
   if (currentPage.value > 1 && !isSearching.value) {
     currentPage.value--;
   }
 }
 
 function nextPage() {
-  // Disable next button when searching or on the last page
   if (currentPage.value < totalPages.value && !isSearching.value) {
     currentPage.value++;
   }
 }
 
 function setPage(pageNumber) {
-  // Only allow setting page number when not searching
   if (!isSearching.value) {
     currentPage.value = pageNumber;
   }
