@@ -93,10 +93,12 @@ const filteredAndPaginatedCompanies = computed<{
   totalPages: number;
   data: ICompany[];
 }>(() => {
-  const filtered = companies.value.filter((company) =>
-    company["Company Name"]
-      .toLowerCase()
-      .includes(searchTerm.value.toLowerCase())
+  const filtered = companies.value.filter(
+    (company) =>
+      company["Company Name"] &&
+      company["Company Name"]
+        .toLowerCase()
+        .includes(searchTerm.value.toLowerCase())
   );
 
   if (filtered.length === 0) {

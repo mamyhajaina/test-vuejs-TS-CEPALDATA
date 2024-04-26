@@ -261,7 +261,7 @@ const updateCompanie = async (id: number) => {
   try {
     await axios.put(
       `https://api-generator.retool.com/Oal4aL/listing-company/${id}`,
-      companiesDetail
+      companiesDetail.value
     );
     window.location.reload();
   } catch (error) {}
