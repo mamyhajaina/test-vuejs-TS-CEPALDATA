@@ -15,10 +15,6 @@
             </div>
           </div>
 
-          <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="button">+ Add Items</button>
-          </div>
-
           <div class="float-left mt-5">
             <div class="credits text-white">
               <p class="text-white">Compte: Achi@gmail.com et le mtps: test.</p>
@@ -48,19 +44,17 @@
 
                 <!-- General Form Elements -->
                 <form @submit.prevent>
-                  <div class="row justify-content-center">
-                    <div class="col-xl-8">
-                      <div class="">
-                        <div
-                          class="pt-4 pb-4 d-flex flex-column align-items-center"
-                        >
-                          <img
-                            :src="companiesDetail.Logo"
-                            alt="Profile"
-                            class="rounded-circle"
-                          />
-                        </div>
-                      </div>
+                  <div class="row mb-3">
+                    <label for="inputText" class="col-sm-2 col-form-label"
+                      >Url logo</label
+                    >
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        class="form-control"
+                        :value="companiesDetail['Company Name']"
+                        @input="updateCompanyName($event.target.value)"
+                      />
                     </div>
                   </div>
                   <div class="row mb-3">
