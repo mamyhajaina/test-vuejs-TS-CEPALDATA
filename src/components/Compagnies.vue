@@ -24,7 +24,13 @@
           <div class="row">
             <div class="col-6">Vue: {{ company.vue }}</div>
             <div class="col-6">
-              <!-- <button type="button" class="btn btn-primary">Voir</button> -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                @click="handleSubmit(company['id'])"
+              >
+                Voir
+              </button>
             </div>
           </div>
         </div>
@@ -65,6 +71,7 @@
 import type { ICompany } from "@/interfaces/company.interface";
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
+import router from "@/router";
 
 const companies = ref<ICompany[]>([]); // Initialize as an empty array
 const searchTerm = ref(""); // Search term for filtering
@@ -137,6 +144,10 @@ function nextPage() {
 function setPage(pageNumber: number) {
   resetPrevSearchTerm();
   currentPage.value = pageNumber;
+}
+
+function handleSubmit(id: any) {
+  router.push(`/details/${id}`);
 }
 </script>
 
