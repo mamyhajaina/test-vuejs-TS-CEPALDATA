@@ -9,27 +9,44 @@
         @keyup.enter="searchCompanies"
       />
     </div>
-    <div
-      class="card mb-3"
-      v-for="companie in filteredCompanies"
-      :key="companie['Company Name']"
-    >
-      <div class="d-flex align-items-center">
-        <img :src="companie.Logo" class="rounded-circle" alt="Profil" />
-        <div class="ps-3">
-          <h6>{{ companie["Company Name"] }}</h6>
-          <span class="text-muted small pt-2 ps-1">{{ companie.About }}</span>
+    <div v-for="company in paginatedCompanies" :key="company['Company Name']">
+      <div class="card mb-3">
+        <div class="d-flex align-items-center">
+          <img :src="company.Logo" class="rounded-circle" alt="Profil" />
+          <div class="ps-3">
+            <h6>{{ company["Company Name"] }}</h6>
+            <span class="text-muted small pt-2 ps-1">{{ company.About }}</span>
+          </div>
         </div>
-      </div>
-      <div class="card-footer">
-        <div class="row">
-          <div class="col-6">Vue: {{ companie.vue }}</div>
-          <div class="col-6">
-            <button type="button" class="btn btn-primary">Voir</button>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-6">Vue: {{ company.vue }}</div>
+            <div class="col-6">
+              <button type="button" class="btn btn-primary">Voir</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item" :class="{ disabled: currentPage === 1 }">
+          <a class="page-link" href="#" @click="prevPage">Previous</a>
+        </li>
+        <li v-for="n in totalPages" :key="n" class="page-item">
+          <a
+            class="page-link"
+            :class="{ active: currentPage === n }"
+            @click="setPage(n)"
+          >
+            {{ n }}
+          </a>
+        </li>
+        <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+          <a class="page-link" href="#" @click="nextPage">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -39,6 +56,8 @@ import { defineProps, ref, onMounted, computed } from "vue";
 
 const companies = ref([]); // Initialize as an empty array
 const searchTerm = ref(""); // Search term for filtering
+const currentPage = ref(1); // Current page number (initially set to 1)
+const itemsPerPage = 3; // Items to display per page
 
 interface Company {
   "Company Name": string;
@@ -66,9 +85,49 @@ const filteredCompanies = computed(() => {
   );
 });
 
+const totalPages = computed(() =>
+  Math.ceil(filteredCompanies.value.length / itemsPerPage)
+);
+
+const paginatedCompanies = computed(() => {
+  if (filteredCompanies.value.length === 0) {
+    // No companies to paginate, return an empty array
+    return [];
+  }
+
+  const startIndex = (currentPage.value - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  return filteredCompanies.value.slice(startIndex, endIndex);
+});
+
+const isSearching = computed(() => searchTerm.value.length > 0);
+
 function searchCompanies() {
   if (searchTerm.value.length < 3) {
     console.warn("Search term must be at least 3 characters long.");
+  }
+  // Reset pagination to first page after search
+  currentPage.value = 1;
+}
+
+function prevPage() {
+  // Disable previous button when searching or on the first page
+  if (currentPage.value > 1 && !isSearching.value) {
+    currentPage.value--;
+  }
+}
+
+function nextPage() {
+  // Disable next button when searching or on the last page
+  if (currentPage.value < totalPages.value && !isSearching.value) {
+    currentPage.value++;
+  }
+}
+
+function setPage(pageNumber) {
+  // Only allow setting page number when not searching
+  if (!isSearching.value) {
+    currentPage.value = pageNumber;
   }
 }
 </script>
