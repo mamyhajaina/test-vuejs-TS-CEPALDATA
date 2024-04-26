@@ -91,7 +91,7 @@ const handleSubmit = () => {
                 <div class="col-12">
                   <div class="form-floating mb-3">
                     <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       id="PassWord"
                       required
